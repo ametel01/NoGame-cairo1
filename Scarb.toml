@@ -17,6 +17,7 @@ starknet = "2.4.4"
 test = "snforge test"
 declare = "sh scripts/sepolia/declare.sh"
 deploy = "sh scripts/sepolia/deploy.sh"
+len = "sh scripts/sierra_len.sh"
 
 [[target.starknet-contract]]
 allowed-libfuncs-list.name = "audited"
