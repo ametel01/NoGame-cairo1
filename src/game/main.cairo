@@ -1696,7 +1696,6 @@ mod NoGame {
                     return cost;
                 },
                 UpgradeType::Ion => {
-                    assert!(!is_testnet, "NoGame: Ion tech not available on testnet realease");
                     let lab_level = self.compounds_level.read((planet_id, Names::LAB));
                     let techs = self.get_tech_levels(planet_id);
                     Lab::ion_systems_requirements_check(lab_level, techs);
@@ -1913,7 +1912,6 @@ mod NoGame {
                     return cost;
                 },
                 BuildType::Frigate => {
-                    assert!(!is_testnet, "NoGame: Frigate not available on testnet realease");
                     let techs = self.get_tech_levels(planet_id);
                     Dockyard::frigate_requirements_check(dockyard_level, techs);
                     let cost = Dockyard::get_ships_cost(quantity, self.get_ships_cost().frigate);

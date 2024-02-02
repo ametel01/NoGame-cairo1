@@ -325,7 +325,7 @@ mod ColonyComponent {
                         );
                 },
                 ColonyBuildType::Sparrow => {
-                    Dockyard::scraper_requirements_check(dockyard_level, techs);
+                    Dockyard::sparrow_requirements_check(dockyard_level, techs);
                     self
                         .colony_ships
                         .write(
@@ -335,7 +335,7 @@ mod ColonyComponent {
                         );
                 },
                 ColonyBuildType::Frigate => {
-                    Dockyard::scraper_requirements_check(dockyard_level, techs);
+                    Dockyard::frigate_requirements_check(dockyard_level, techs);
                     self
                         .colony_ships
                         .write(
@@ -345,7 +345,7 @@ mod ColonyComponent {
                         );
                 },
                 ColonyBuildType::Armade => {
-                    Dockyard::scraper_requirements_check(dockyard_level, techs);
+                    Dockyard::armade_requirements_check(dockyard_level, techs);
                     self
                         .colony_ships
                         .write(
