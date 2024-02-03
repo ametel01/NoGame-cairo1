@@ -107,8 +107,6 @@ mod NoGame {
         TechSpent: TechSpent,
         FleetSpent: FleetSpent,
         DefenceSpent: DefenceSpent,
-        FleetSent: FleetSent,
-        FleetReturn: FleetReturn,
         BattleReport: BattleReport,
         DebrisCollected: DebrisCollected,
         #[flat]
@@ -157,21 +155,6 @@ mod NoGame {
     }
 
     #[derive(Drop, starknet::Event)]
-    struct FleetSent {
-        origin: u32,
-        destination: u32,
-        mission_type: u8,
-        fleet: Fleet,
-    }
-
-    #[derive(Drop, starknet::Event)]
-    struct FleetReturn {
-        docked_at: u32,
-        mission_type: u8,
-        fleet: Fleet,
-    }
-
-    #[derive(Drop, starknet::Event)]
     struct BattleReport {
         time: u64,
         attacker: u32,
@@ -191,8 +174,9 @@ mod NoGame {
     #[derive(Drop, starknet::Event)]
     struct DebrisCollected {
         planet_id: u32,
-        debris_field_id: u32,
-        amount: Debris,
+        debris_field: PlanetPosition,
+        collectible_amount: Debris,
+        collected_amount: Debris,
     }
 
     #[constructor]
@@ -482,31 +466,9 @@ mod NoGame {
                 assert(f.scraper >= 1, 'no scrapers for collection');
                 mission.category = MissionCategory::DEBRIS;
                 self.add_active_mission(planet_id, mission);
-                self
-                    .emit(
-                        Event::FleetSent(
-                            FleetSent {
-                                origin: planet_id,
-                                destination: destination_id,
-                                mission_type: MissionCategory::DEBRIS,
-                                fleet: f,
-                            }
-                        )
-                    );
             } else if mission_type == MissionCategory::TRANSPORT {
                 mission.category = MissionCategory::TRANSPORT;
                 self.add_active_mission(planet_id, mission);
-                self
-                    .emit(
-                        Event::FleetSent(
-                            FleetSent {
-                                origin: planet_id,
-                                destination: destination_id,
-                                mission_type: MissionCategory::TRANSPORT,
-                                fleet: f,
-                            }
-                        )
-                    );
             } else {
                 let is_inactive = time_now - self.last_active.read(destination_id) > WEEK;
                 if !is_inactive {
@@ -530,17 +492,6 @@ mod NoGame {
                     mission.destination
                 };
                 self.add_incoming_mission(target_planet, hostile_mission);
-                self
-                    .emit(
-                        Event::FleetSent(
-                            FleetSent {
-                                origin: planet_id,
-                                destination: destination_id,
-                                mission_type: MissionCategory::ATTACK,
-                                fleet: f,
-                            }
-                        )
-                    );
             }
             self.last_active.write(planet_id, time_now);
             // Write new fleet levels
@@ -659,12 +610,6 @@ mod NoGame {
             self.active_missions.write((origin, mission_id), Zeroable::zero());
             self.remove_incoming_mission(mission.destination, mission_id);
             self.last_active.write(origin, get_block_timestamp());
-            self
-                .emit(
-                    FleetReturn {
-                        docked_at: origin, mission_type: mission.category, fleet: mission.fleet
-                    }
-                );
         }
 
         fn dock_fleet(ref self: ContractState, mission_id: usize) {
@@ -675,12 +620,6 @@ mod NoGame {
             self.fleet_return_planet(mission.destination, mission.fleet);
             self.active_missions.write((origin, mission_id), Zeroable::zero());
             self.last_active.write(origin, get_block_timestamp());
-            self
-                .emit(
-                    FleetReturn {
-                        docked_at: origin, mission_type: mission.category, fleet: mission.fleet
-                    }
-                );
         }
 
         fn collect_debris(ref self: ContractState, mission_id: usize) {
@@ -724,22 +663,16 @@ mod NoGame {
             self.active_missions.write((origin, mission_id), Zeroable::zero());
             self.last_active.write(origin, time_now);
 
-            self
-                .emit(
-                    FleetReturn {
-                        docked_at: origin,
-                        mission_type: MissionCategory::DEBRIS,
-                        fleet: mission.fleet
-                    }
-                );
+            let debris_field = self.planet_position.read(mission.destination);
 
             self
                 .emit(
                     Event::DebrisCollected(
                         DebrisCollected {
                             planet_id: origin,
-                            debris_field_id: mission.destination,
-                            amount: collectible_debris,
+                            debris_field,
+                            collectible_amount: debris,
+                            collected_amount: collectible_debris
                         }
                     )
                 );
