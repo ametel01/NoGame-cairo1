@@ -1469,7 +1469,11 @@ mod NoGame {
         }
 
         fn get_fuel_consumption(
-            self: @ContractState, origin: PlanetPosition, destination: PlanetPosition, fleet: Fleet, speed_modifier: u32
+            self: @ContractState,
+            origin: PlanetPosition,
+            destination: PlanetPosition,
+            fleet: Fleet,
+            speed_modifier: u32
         ) -> u128 {
             let distance = fleet::get_distance(origin, destination);
             fleet::get_fuel_consumption(fleet, distance, speed_modifier)

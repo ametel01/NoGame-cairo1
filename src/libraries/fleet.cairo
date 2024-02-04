@@ -417,8 +417,8 @@ fn get_unit_consumption(ship: Unit, distance: u32, speed_percentage: u32) -> u12
                     + FixedTrait::new_unscaled(1, false)),
                 FixedTrait::new_unscaled(2, false)
             ))
-                .mag
-            / ONE
+        .mag
+        / ONE
 }
 
 fn get_fuel_consumption(f: Fleet, distance: u32, speed_percentage: u32) -> u128 {

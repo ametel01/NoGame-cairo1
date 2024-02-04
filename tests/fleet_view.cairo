@@ -25,7 +25,7 @@ fn test_get_fuel_consumption() {
     p1.system = 1;
     p1.orbit = 1;
     p2.system = 2;
-    p2.orbit = 1; 
+    p2.orbit = 1;
     let mut fleet: Fleet = Default::default();
     fleet.carrier = 10;
     fleet.scraper = 10;
@@ -33,7 +33,7 @@ fn test_get_fuel_consumption() {
     fleet.frigate = 10;
     fleet.armade = 10;
 
-    let consumption  = state.get_fuel_consumption(p1, p2, fleet, 10);
+    let consumption = state.get_fuel_consumption(p1, p2, fleet, 10);
     consumption.print();
 }
 
