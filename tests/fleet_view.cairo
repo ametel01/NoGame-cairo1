@@ -6,14 +6,36 @@ use snforge_std::PrintTrait;
 use snforge_std::{start_prank, start_warp, CheatTarget};
 
 use nogame::game::interface::{INoGameDispatcher, INoGameDispatcherTrait};
+use nogame::game::main::{NoGame, NoGame::InternalTrait};
 use nogame::libraries::types::{
     ERC20s, EnergyCost, TechLevels, TechsCost, ShipsLevels, ShipsCost, DefencesLevels, DefencesCost,
-    Fleet, BuildType, UpgradeType, MissionCategory
+    Fleet, BuildType, UpgradeType, MissionCategory, PlanetPosition
 };
 use nogame::token::erc721::interface::{IERC721NoGameDispatcher, IERC721NoGameDispatcherTrait};
 use tests::utils::{
     E18, HOUR, Dispatchers, ACCOUNT1, ACCOUNT2, ACCOUNT3, ACCOUNT4, init_game, set_up, init_storage
 };
+
+#[test]
+fn test_get_fuel_consumption() {
+    let mut state = NoGame::contract_state_for_testing();
+
+    let mut p1: PlanetPosition = Default::default();
+    let mut p2: PlanetPosition = Default::default();
+    p1.system = 1;
+    p1.orbit = 1;
+    p2.system = 2;
+    p2.orbit = 1; 
+    let mut fleet: Fleet = Default::default();
+    fleet.carrier = 10;
+    fleet.scraper = 10;
+    fleet.sparrow = 10;
+    fleet.frigate = 10;
+    fleet.armade = 10;
+
+    let consumption  = state.get_fuel_consumption(p1, p2, fleet, 10);
+    consumption.print();
+}
 
 #[test]
 fn test_is_noob_protected() {

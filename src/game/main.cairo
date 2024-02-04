@@ -443,9 +443,7 @@ mod NoGame {
             assert(active_missions < techs.digital.into() + 1, 'max active missions');
 
             // Pay for fuel
-            let consumption = fleet::get_fuel_consumption(f, distance)
-                * 100
-                / speed_modifier.into();
+            let consumption = fleet::get_fuel_consumption(f, distance, speed_modifier);
             let mut cost: ERC20s = Default::default();
             cost.tritium = consumption;
             self.check_enough_resources(caller, cost);
@@ -1471,10 +1469,10 @@ mod NoGame {
         }
 
         fn get_fuel_consumption(
-            self: @ContractState, origin: PlanetPosition, destination: PlanetPosition, fleet: Fleet
+            self: @ContractState, origin: PlanetPosition, destination: PlanetPosition, fleet: Fleet, speed_modifier: u32
         ) -> u128 {
             let distance = fleet::get_distance(origin, destination);
-            fleet::get_fuel_consumption(fleet, distance)
+            fleet::get_fuel_consumption(fleet, distance, speed_modifier)
         }
 
         fn upgrade_component(

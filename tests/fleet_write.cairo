@@ -67,7 +67,7 @@ fn test_send_fleet_success() {
     let p1_position = dsp.game.get_planet_position(1);
     let distance = fleet::get_distance(p1_position, p2_position);
 
-    let fuel_consumption = fleet::get_fuel_consumption(fleet, distance);
+    let fuel_consumption = fleet::get_fuel_consumption(fleet, distance, 100);
 
     assert(tritium_after == tritium_before - fuel_consumption, 'wrong fuel consumption');
 

@@ -358,9 +358,9 @@ fn test_distance() {
 #[test]
 fn test_fuel_consumption() {
     let mut fleet: Fleet = Default::default();
-    fleet.carrier = 1;
-    fleet.armade = 1;
-    fleet::get_fuel_consumption(fleet, 2700);
+    fleet.carrier = 100;
+    // fleet.armade = 1;
+    fleet::get_fuel_consumption(fleet, 2700, 100).print();
 }
 
 #[test]

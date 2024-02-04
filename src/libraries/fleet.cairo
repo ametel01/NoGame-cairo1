@@ -1,6 +1,6 @@
 use snforge_std::PrintTrait;
 use nogame_fixed::f128::types::{Fixed, FixedTrait, ONE_u128 as ONE};
-use nogame_fixed::f128::core::{exp, sqrt};
+use nogame_fixed::f128::core::{exp, sqrt, pow};
 
 use nogame::libraries::{math, dockyard::Dockyard};
 use nogame::libraries::types::{
@@ -8,7 +8,7 @@ use nogame::libraries::types::{
 };
 
 fn CARRIER() -> Unit {
-    Unit { id: 0, weapon: 50, shield: 10, hull: 1000, speed: 5000, cargo: 10000, consumption: 10 }
+    Unit { id: 0, weapon: 50, shield: 10, hull: 1000, speed: 5000, cargo: 10000, consumption: 20 }
 }
 
 fn SCRAPER() -> Unit {
@@ -406,18 +406,27 @@ fn get_flight_time(speed: u32, distance: u32, speed_percentage: u32) -> u64 {
 }
 
 
-fn get_unit_consumption(ship: Unit, distance: u32) -> u128 {
-    // TODO: when speed variation is available tweak this formula
-    // https://ogame.fandom.com/wiki/Fuel_Consumption?so=search
-    (ship.consumption * distance / 35000).into()
+fn get_unit_consumption(ship: Unit, distance: u32, speed_percentage: u32) -> u128 {
+    (FixedTrait::new_unscaled(1, false)
+        + (FixedTrait::new_unscaled(ship.consumption.into(), false)
+            * FixedTrait::new_unscaled(distance.into(), false)
+            / FixedTrait::new_unscaled(35000, false))
+            * pow(
+                (FixedTrait::new_unscaled(speed_percentage.into(), false)
+                    / FixedTrait::new_unscaled(100, false)
+                    + FixedTrait::new_unscaled(1, false)),
+                FixedTrait::new_unscaled(2, false)
+            ))
+                .mag
+            / ONE
 }
 
-fn get_fuel_consumption(f: Fleet, distance: u32) -> u128 {
-    f.carrier.into() * get_unit_consumption(CARRIER(), distance)
-        + f.scraper.into() * get_unit_consumption(SCRAPER(), distance)
-        + f.sparrow.into() * get_unit_consumption(SPARROW(), distance)
-        + f.frigate.into() * get_unit_consumption(FRIGATE(), distance)
-        + f.armade.into() * get_unit_consumption(ARMADE(), distance)
+fn get_fuel_consumption(f: Fleet, distance: u32, speed_percentage: u32) -> u128 {
+    f.carrier.into() * get_unit_consumption(CARRIER(), distance, speed_percentage)
+        + f.scraper.into() * get_unit_consumption(SCRAPER(), distance, speed_percentage)
+        + f.sparrow.into() * get_unit_consumption(SPARROW(), distance, speed_percentage)
+        + f.frigate.into() * get_unit_consumption(FRIGATE(), distance, speed_percentage)
+        + f.armade.into() * get_unit_consumption(ARMADE(), distance, speed_percentage)
 }
 
 fn get_distance(start: PlanetPosition, end: PlanetPosition) -> u32 {
