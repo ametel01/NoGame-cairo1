@@ -22,16 +22,16 @@ fn test_get_fuel_consumption() {
 
     let mut p1: PlanetPosition = Default::default();
     let mut p2: PlanetPosition = Default::default();
-    p1.system = 1;
+    p1.system = 86;
     p1.orbit = 1;
-    p2.system = 2;
-    p2.orbit = 1;
+    p2.system = 198;
+    p2.orbit = 9;
     let mut fleet: Fleet = Default::default();
-    fleet.carrier = 10;
-    fleet.scraper = 10;
+    // fleet.carrier = 10;
+    // fleet.scraper = 10;
     fleet.sparrow = 10;
-    fleet.frigate = 10;
-    fleet.armade = 10;
+    // fleet.frigate = 10;
+    // fleet.armade = 10;
 
     let consumption = state.get_fuel_consumption(p1, p2, fleet, 10);
     consumption.print();
