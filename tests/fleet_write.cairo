@@ -593,6 +593,7 @@ fn test_recall_fleet() {
     let mission_after = dsp.game.get_mission_details(1, 1);
     assert(mission_after == Zeroable::zero(), 'wrong mission after');
     assert(dsp.game.get_active_missions(1).len() == 0, 'wrong active missions');
+    assert(dsp.game.get_incoming_missions(2).len() == 0, 'wrong hostile missions');
 }
 
 #[test]

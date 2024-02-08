@@ -1,7 +1,7 @@
 use nogame::libraries::types::PlanetPosition;
 
 fn get_colony_position(colony_id: usize) -> PlanetPosition {
-    let positions_array: Array<PlanetPosition> = array![
+    let Planetpositions_array: Array<PlanetPosition> = array![
         PlanetPosition { system: 188, orbit: 10 },
         PlanetPosition { system: 182, orbit: 2 },
         PlanetPosition { system: 69, orbit: 8 },
@@ -197,8 +197,6 @@ fn get_colony_position(colony_id: usize) -> PlanetPosition {
         PlanetPosition { system: 96, orbit: 10 },
         PlanetPosition { system: 191, orbit: 9 },
         PlanetPosition { system: 53, orbit: 7 },
-        PlanetPosition { system: 146, orbit: 9 },
-        PlanetPosition { system: 100, orbit: 10 },
         PlanetPosition { system: 91, orbit: 3 },
         PlanetPosition { system: 84, orbit: 9 },
         PlanetPosition { system: 35, orbit: 8 },
@@ -607,7 +605,6 @@ fn get_colony_position(colony_id: usize) -> PlanetPosition {
         PlanetPosition { system: 104, orbit: 9 },
         PlanetPosition { system: 74, orbit: 3 },
         PlanetPosition { system: 119, orbit: 2 },
-        PlanetPosition { system: 36, orbit: 6 },
         PlanetPosition { system: 33, orbit: 9 },
         PlanetPosition { system: 166, orbit: 9 },
         PlanetPosition { system: 11, orbit: 3 },
@@ -1058,7 +1055,6 @@ fn get_colony_position(colony_id: usize) -> PlanetPosition {
         PlanetPosition { system: 142, orbit: 1 },
         PlanetPosition { system: 85, orbit: 1 },
         PlanetPosition { system: 191, orbit: 2 },
-        PlanetPosition { system: 38, orbit: 3 },
         PlanetPosition { system: 11, orbit: 8 },
         PlanetPosition { system: 127, orbit: 8 },
         PlanetPosition { system: 192, orbit: 4 },
@@ -1275,7 +1271,6 @@ fn get_colony_position(colony_id: usize) -> PlanetPosition {
         PlanetPosition { system: 61, orbit: 8 },
         PlanetPosition { system: 164, orbit: 9 },
         PlanetPosition { system: 34, orbit: 10 },
-        PlanetPosition { system: 93, orbit: 8 },
         PlanetPosition { system: 8, orbit: 3 },
         PlanetPosition { system: 66, orbit: 3 },
         PlanetPosition { system: 69, orbit: 1 },
@@ -1382,7 +1377,6 @@ fn get_colony_position(colony_id: usize) -> PlanetPosition {
         PlanetPosition { system: 177, orbit: 5 },
         PlanetPosition { system: 88, orbit: 9 },
         PlanetPosition { system: 86, orbit: 7 },
-        PlanetPosition { system: 44, orbit: 2 },
         PlanetPosition { system: 162, orbit: 5 },
         PlanetPosition { system: 75, orbit: 6 },
         PlanetPosition { system: 168, orbit: 3 },
@@ -1492,7 +1486,6 @@ fn get_colony_position(colony_id: usize) -> PlanetPosition {
         PlanetPosition { system: 181, orbit: 1 },
         PlanetPosition { system: 107, orbit: 3 },
         PlanetPosition { system: 60, orbit: 2 },
-        PlanetPosition { system: 30, orbit: 4 },
         PlanetPosition { system: 11, orbit: 2 },
         PlanetPosition { system: 191, orbit: 6 },
         PlanetPosition { system: 20, orbit: 8 },
@@ -1503,5 +1496,5 @@ fn get_colony_position(colony_id: usize) -> PlanetPosition {
         PlanetPosition { system: 171, orbit: 1 },
         PlanetPosition { system: 176, orbit: 2 },
     ];
-    return *positions_array.at((colony_id));
+    return *Planetpositions_array.at((colony_id));
 }

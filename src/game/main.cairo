@@ -1292,15 +1292,19 @@ mod NoGame {
         }
 
         fn remove_incoming_mission(ref self: ContractState, planet_id: u32, id_to_remove: usize) {
-            let len = self.hostile_missions_len.read(planet_id);
+            let mut actual_id = planet_id;
+            if planet_id > 500 {
+                actual_id = self.colony_owner.read(planet_id);
+            }
+            let len = self.hostile_missions_len.read(actual_id);
             let mut i = 1;
             loop {
                 if i > len {
                     break;
                 }
-                let mission = self.hostile_missions.read((planet_id, i));
+                let mission = self.hostile_missions.read((actual_id, i));
                 if mission.id_at_origin == id_to_remove {
-                    self.hostile_missions.write((planet_id, i), Zeroable::zero());
+                    self.hostile_missions.write((actual_id, i), Zeroable::zero());
                     break;
                 }
                 i += 1;
