@@ -943,12 +943,17 @@ mod NoGame {
             let mut defences: DefencesLevels = Default::default();
             let mut techs: TechLevels = Default::default();
             let mut celestia = 0;
-            if planet_id > 1000 {
-                let colony_mother_planet = self.colony_owner.read(planet_id);
+            if planet_id > 500 {
+                let colony_id: u8 = (planet_id % 1000).try_into().expect('invalid planet id');
+                let colony_mother_planet = planet_id / 1000;
+                fleet = self.get_colony_ships_levels(
+                    colony_mother_planet,
+                    colony_id,
+                );
                 defences = self
                     .get_colony_defences_levels(
                         colony_mother_planet,
-                        (planet_id - colony_mother_planet * 1000).try_into().unwrap()
+                        colony_id
                     );
                 techs = self.get_tech_levels(colony_mother_planet);
                 celestia = defences.celestia;
