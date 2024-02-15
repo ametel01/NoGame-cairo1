@@ -14,7 +14,7 @@ use nogame::token::erc20::erc20::ERC20;
 use nogame::token::erc721::interface::{IERC721NoGameDispatcher, IERC721NoGameDispatcherTrait};
 
 use snforge_std::{
-    declare, ContractClassTrait, start_warp, start_prank, stop_prank, PrintTrait, CheatTarget,
+    declare, ContractClassTrait, start_warp, start_prank, stop_prank,  CheatTarget,
     store, map_entry_address
 };
 

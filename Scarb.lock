@@ -17,10 +17,10 @@ source = "git+https://github.com/ametel01/nogame-fixed.git?rev=9c1f2fa#9c1f2fa01
 
 [[package]]
 name = "openzeppelin"
-version = "0.8.0"
-source = "git+https://github.com/openzeppelin/cairo-contracts?tag=v0.8.0#c23e8e96de60e6e3159b1ff8591a1187269c0eb7"
+version = "0.9.0"
+source = "git+https://github.com/openzeppelin/cairo-contracts?tag=v0.9.0#861fc416f87addbe23a3b47f9d19ab27c10d5dc8"
 
 [[package]]
 name = "snforge_std"
-version = "0.15.0"
-source = "git+https://github.com/foundry-rs/starknet-foundry.git?tag=v0.15.0#7747a2d27b9ebfccf7de8e757d9c6a3ed31e81fc"
+version = "0.17.1"
+source = "git+https://github.com/foundry-rs/starknet-foundry.git?tag=v0.17.1#f3237f2325d5fd31fb066cbc18f279839521090c"

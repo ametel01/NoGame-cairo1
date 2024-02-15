@@ -1,7 +1,7 @@
 use starknet::info::{get_block_timestamp, get_contract_address};
 
 use snforge_std::{
-    PrintTrait, declare, ContractClassTrait, start_prank, start_warp, spy_events, SpyOn, EventSpy,
+    declare, ContractClassTrait, start_prank, start_warp, spy_events, SpyOn, EventSpy,
     EventAssertions, EventFetcher, event_name_hash, Event, CheatTarget
 };
 

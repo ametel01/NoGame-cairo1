@@ -1,7 +1,6 @@
 use integer::{u128_overflowing_add, u128_overflowing_sub};
 use starknet::ContractAddress;
-
-use snforge_std::PrintTrait;
+use debug::PrintTrait;
 
 const E18: u128 = 1000000000000000000;
 const MAX_NUMBER_OF_PLANETS: u32 = 500;
@@ -86,7 +85,7 @@ fn erc20_mul(a: ERC20s, multiplicator: u128) -> ERC20s {
 }
 
 impl ERC20Print of PrintTrait<ERC20s> {
-    fn print(self: @ERC20s) {
+    fn print(self: ERC20s) {
         self.steel.print();
         self.quartz.print();
         self.tritium.print();
@@ -104,7 +103,7 @@ struct CompoundsLevels {
 }
 
 impl CompoundsLevelsPrint of PrintTrait<CompoundsLevels> {
-    fn print(self: @CompoundsLevels) {
+    fn print(self: CompoundsLevels) {
         self.steel.print();
         self.quartz.print();
         self.tritium.print();
@@ -125,7 +124,7 @@ struct CompoundsCost {
 }
 
 impl CompoundsCostPrint of PrintTrait<CompoundsCost> {
-    fn print(self: @CompoundsCost) {
+    fn print(self: CompoundsCost) {
         self.steel.print();
         self.quartz.print();
         self.tritium.print();
@@ -153,7 +152,7 @@ struct TechLevels {
 }
 
 impl TechLevelsPrint of PrintTrait<TechLevels> {
-    fn print(self: @TechLevels) {
+    fn print(self: TechLevels) {
         self.energy.print();
         self.digital.print();
         self.beam.print();
@@ -215,7 +214,7 @@ struct DefencesLevels {
 }
 
 impl DefencesLevelsPrint of PrintTrait<DefencesLevels> {
-    fn print(self: @DefencesLevels) {
+    fn print(self: DefencesLevels) {
         self.celestia.print();
         self.blaster.print();
         self.beam.print();
@@ -262,7 +261,7 @@ struct PlanetPosition {
 }
 
 impl PlanetPositionPrint of PrintTrait<PlanetPosition> {
-    fn print(self: @PlanetPosition) {
+    fn print(self: PlanetPosition) {
         self.system.print();
         self.orbit.print();
     }
@@ -306,7 +305,7 @@ impl DebrisZeroable of Zeroable<Debris> {
 }
 
 impl DebrisPrint of PrintTrait<Debris> {
-    fn print(self: @Debris) {
+    fn print(self: Debris) {
         self.steel.print();
         self.quartz.print();
     }
@@ -347,7 +346,7 @@ impl FleetZeroable of Zeroable<Fleet> {
 }
 
 impl FleetPrint of PrintTrait<Fleet> {
-    fn print(self: @Fleet) {
+    fn print(self: Fleet) {
         self.carrier.print();
         self.scraper.print();
         self.sparrow.print();
@@ -375,7 +374,7 @@ impl UnitImpl of UnitTrait {
 }
 
 impl PrintUnit of PrintTrait<Unit> {
-    fn print(self: @Unit) {
+    fn print(self: Unit) {
         self.weapon.print();
         self.shield.print();
         self.hull.print();
@@ -392,7 +391,7 @@ struct IncomingMission {
 }
 
 impl IncomingMissionPrint of PrintTrait<IncomingMission> {
-    fn print(self: @IncomingMission) {
+    fn print(self: IncomingMission) {
         self.origin.print();
         self.id_at_origin.print();
         self.time_arrival.print();
@@ -453,7 +452,7 @@ impl MissionZeroable of Zeroable<Mission> {
 }
 
 impl MissionPrint of PrintTrait<Mission> {
-    fn print(self: @Mission) {
+    fn print(self: Mission) {
         self.time_start.print();
         self.origin.print();
         self.destination.print();

@@ -35,8 +35,6 @@ mod NoGame {
 
     use nogame::libraries::auction::{LinearVRGDA, LinearVRGDATrait};
 
-    use snforge_std::PrintTrait;
-
     component!(path: UpgradeableComponent, storage: upgradeable, event: UpgradeableEvent);
     impl UpgradableInteralImpl = UpgradeableComponent::InternalImpl<ContractState>;
 

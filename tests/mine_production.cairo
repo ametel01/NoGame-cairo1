@@ -1,5 +1,4 @@
 use nogame::libraries::compounds::{Compounds, Production};
-use snforge_std::PrintTrait;
 
 #[test]
 fn steel_production_test() {

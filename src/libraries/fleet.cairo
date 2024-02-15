@@ -1,4 +1,3 @@
-use snforge_std::PrintTrait;
 use nogame_fixed::f128::types::{Fixed, FixedTrait, ONE_u128 as ONE};
 use nogame_fixed::f128::core::{exp, sqrt, pow};
 

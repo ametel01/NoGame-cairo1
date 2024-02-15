@@ -1,7 +1,6 @@
 use starknet::testing::cheatcode;
 use starknet::info::get_contract_address;
 use starknet::{ContractAddress, contract_address_const};
-use snforge_std::PrintTrait;
 
 use snforge_std::{start_prank, start_warp, CheatTarget};
 
@@ -34,7 +33,6 @@ fn test_get_fuel_consumption() {
     // fleet.armade = 10;
 
     let consumption = state.get_fuel_consumption(p1, p2, fleet, 10);
-    consumption.print();
 }
 
 #[test]

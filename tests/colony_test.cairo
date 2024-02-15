@@ -6,7 +6,7 @@ use nogame::libraries::types::{
     ColonyUpgradeType, ColonyBuildType, BuildType, UpgradeType, Fleet, DefencesLevels,
     CompoundsLevels, DAY, PlanetPosition, ShipsLevels, ERC20s, Debris, MissionCategory
 };
-use snforge_std::{start_prank, CheatTarget, PrintTrait, start_warp};
+use snforge_std::{start_prank, CheatTarget, start_warp};
 
 #[test]
 fn test_generate_colony() {

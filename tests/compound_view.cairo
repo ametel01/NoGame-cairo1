@@ -1,7 +1,6 @@
 use starknet::testing::cheatcode;
 use starknet::info::get_contract_address;
 use starknet::{ContractAddress, contract_address_const};
-use snforge_std::PrintTrait;
 use snforge_std::{start_prank, start_warp, CheatTarget};
 
 use nogame::game::interface::{INoGameDispatcher, INoGameDispatcherTrait};

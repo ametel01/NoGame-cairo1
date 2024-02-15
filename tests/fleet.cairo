@@ -1,6 +1,6 @@
 use starknet::info::get_block_timestamp;
 
-use snforge_std::{declare, ContractClassTrait, PrintTrait, start_prank, start_warp};
+use snforge_std::{declare, ContractClassTrait,  start_prank, start_warp};
 
 use nogame::game::interface::{INoGameDispatcher, INoGameDispatcherTrait};
 use nogame::libraries::types::{
@@ -360,7 +360,7 @@ fn test_fuel_consumption() {
     let mut fleet: Fleet = Default::default();
     fleet.carrier = 100;
     // fleet.armade = 1;
-    fleet::get_fuel_consumption(fleet, 2700, 100).print();
+    fleet::get_fuel_consumption(fleet, 2700, 100);
 }
 
 #[test]

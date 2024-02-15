@@ -53,8 +53,6 @@ mod ColonyComponent {
     use nogame::libraries::dockyard::{Dockyard};
     use super::ResourceName;
 
-    use snforge_std::PrintTrait;
-
     #[storage]
     struct Storage {
         colony_count: usize,

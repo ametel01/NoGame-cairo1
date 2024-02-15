@@ -1,6 +1,5 @@
 use starknet::testing::cheatcode;
 use starknet::{ContractAddress, contract_address_const, get_block_timestamp, get_contract_address};
-use snforge_std::PrintTrait;
 
 use snforge_std::{start_prank, start_warp, CheatTarget};
 
