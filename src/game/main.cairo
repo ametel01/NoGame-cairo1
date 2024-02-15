@@ -944,15 +944,8 @@ mod NoGame {
             if planet_id > 500 {
                 let colony_id: u8 = (planet_id % 1000).try_into().expect('invalid planet id');
                 let colony_mother_planet = planet_id / 1000;
-                fleet = self.get_colony_ships_levels(
-                    colony_mother_planet,
-                    colony_id,
-                );
-                defences = self
-                    .get_colony_defences_levels(
-                        colony_mother_planet,
-                        colony_id
-                    );
+                fleet = self.get_colony_ships_levels(colony_mother_planet, colony_id,);
+                defences = self.get_colony_defences_levels(colony_mother_planet, colony_id);
                 techs = self.get_tech_levels(colony_mother_planet);
                 celestia = defences.celestia;
             } else {

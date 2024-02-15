@@ -6,7 +6,7 @@ use starknet::{ContractAddress, contract_address_const};
 use openzeppelin::token::erc20::interface::{IERC20CamelDispatcher, IERC20CamelDispatcherTrait};
 
 
-use snforge_std::{declare, ContractClassTrait, start_prank, start_warp,  CheatTarget};
+use snforge_std::{declare, ContractClassTrait, start_prank, start_warp, CheatTarget};
 
 use nogame::game::interface::{INoGameDispatcher, INoGameDispatcherTrait};
 use nogame::libraries::types::{

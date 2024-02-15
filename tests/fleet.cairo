@@ -1,6 +1,6 @@
 use starknet::info::get_block_timestamp;
 
-use snforge_std::{declare, ContractClassTrait,  start_prank, start_warp};
+use snforge_std::{declare, ContractClassTrait, start_prank, start_warp};
 
 use nogame::game::interface::{INoGameDispatcher, INoGameDispatcherTrait};
 use nogame::libraries::types::{
